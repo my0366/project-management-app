@@ -1,9 +1,9 @@
-import {DashboardItem} from "../../entities/dashboard/DashboardItem.ts";
+import {Project} from "../../entities/project.ts";
 import {ProjectStatus} from "../../shared/enum/ProjectStatus.ts";
 
 
 interface ProjectItemProps {
-    item: DashboardItem;
+    item: Project;
 }
 
 export const ProjectItem = (props: ProjectItemProps) => {
@@ -19,6 +19,7 @@ export const ProjectItem = (props: ProjectItemProps) => {
         }
     };
 
+    
     return (
         <div
             key={props.item.id}
@@ -32,7 +33,7 @@ export const ProjectItem = (props: ProjectItemProps) => {
             </div>
             <p className="text-gray-600 mb-2">{props.item.description}</p>
             <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-500 pr-4">{props.item.date}</span>
+                <span className="text-sm text-gray-500 pr-4">{props.item.startAt}</span>
                 <div className="w-24 bg-gray-200 rounded-full h-2.5">
                     <div
                         className="bg-blue-600 h-2.5 rounded-full"

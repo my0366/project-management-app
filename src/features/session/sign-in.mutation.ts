@@ -3,8 +3,8 @@ import {useMutation} from "@tanstack/react-query";
 import {SignInWithPasswordCredentials} from "@supabase/supabase-js";
 
 export const useSignInMutation = () => {
-    const mutation = useMutation({
-        mutationFn: async (request : SignInWithPasswordCredentials) => {
+    return useMutation({
+        mutationFn: async (request: SignInWithPasswordCredentials) => {
             const authRepository = new AuthRepository();
             return await authRepository.signIn(request);
         },
@@ -18,7 +18,5 @@ export const useSignInMutation = () => {
             console.error("로그인 실패 : ", error.message);
         },
     });
-
-    return mutation;
 };
 

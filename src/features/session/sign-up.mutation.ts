@@ -3,8 +3,8 @@ import {SignUpWithPasswordCredentials} from "@supabase/supabase-js";
 import {AuthRepository} from "../../shared/data/remote/auth/AuthRepository.ts";
 
 export const useSignUpMutation = () => {
-    const mutation = useMutation({
-        mutationFn: async (request : SignUpWithPasswordCredentials) => {
+    return useMutation({
+        mutationFn: async (request: SignUpWithPasswordCredentials) => {
             const authRepository = new AuthRepository();
             return await authRepository.signUp(request);
         },
@@ -18,6 +18,4 @@ export const useSignUpMutation = () => {
             console.error("로그인 실패:", error.message);
         },
     });
-
-    return mutation;
 };
