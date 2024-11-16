@@ -1,7 +1,8 @@
-import {ProjectProcessItem} from "../../features/dashboard/ProjectProcessItem.tsx";
-import {ProjectItem} from "../../features/dashboard/ProjectItem.tsx";
+
 import {DashboardItem} from "../../entities/dashboard/DashboardItem.ts";
 import {ProjectStatus} from "../../shared/enum/ProjectStatus.ts";
+import {ProjectProcessItem} from "../../features/dashboard/proejct-process-item.ui.tsx";
+import {ProjectItem} from "../../features/dashboard/project-item.ui.tsx";
 
 export const dashboardData: DashboardItem[] = [
     {

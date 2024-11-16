@@ -6,7 +6,7 @@ interface ProjectItemProps {
     item: DashboardItem;
 }
 
-export const ProjectItemUi = (props: ProjectItemProps) => {
+export const ProjectItem = (props: ProjectItemProps) => {
 
     const getStatusStyle = (status: ProjectStatus) => {
         switch (status) {

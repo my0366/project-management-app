@@ -3,7 +3,7 @@ interface ProcessItemProps {
     value: number;
 }
 
-export const ProejctProcessItemUi = (props : ProcessItemProps) => {
+export const ProjectProcessItem = (props : ProcessItemProps) => {
     return (
         <div className="bg-white p-4 rounded-lg shadow">
             <h4 className="text-gray-500">{props.title}</h4>

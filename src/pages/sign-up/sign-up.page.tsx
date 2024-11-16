@@ -42,7 +42,7 @@ export const SignUpPage = () => {
                             type="text"
                             value={'email' in formData ? formData.email : ''}
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            className="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            className="bg-gray-300 text-gray-700 p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         />
                     </div>
                     <div>
@@ -51,7 +51,7 @@ export const SignUpPage = () => {
                             type="password"
                             value={formData.password}
                             onChange={(e) => setFormData({...formData, password: e.target.value})}
-                            className="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            className="bg-gray-300 text-gray-700 p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         />
                     </div>
                     <button
