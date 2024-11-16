@@ -4,6 +4,7 @@ import {SignInPage} from "../pages/sign-in/sign-in.page.tsx";
 import {SignUpPage} from "../pages/sign-up/sign-up.page.tsx";
 import {DashboardPage} from "../pages/dashboard/dashboard.page.tsx";
 import {Layout} from "../widgets/layout.tsx";
+import {CreateProject} from "../pages/create-project/create-project-ui.page.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,15 @@ export const router = createBrowserRouter([
                     {
                         path: "dashboard",
                         element: createElement(DashboardPage),
+                    },
+                ],
+            },
+            {
+                path: "core",
+                children: [
+                    {
+                        path: "create-project",
+                        element: createElement(CreateProject),
                     },
                 ],
             },
