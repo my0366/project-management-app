@@ -10,5 +10,15 @@ export interface RequestCreateProject {
 }
 
 export abstract class IProjectRepository {
-    abstract createProject(request : RequestCreateProject) : Promise<PostgrestSingleResponse<{ id: string }[]>>
+    abstract createProject(request: RequestCreateProject): Promise<PostgrestSingleResponse<{ id: string }[]>>
+
+    abstract fetchProject(): Promise<PostgrestSingleResponse<{
+        id: string,
+        title: string,
+        description: string,
+        status: string,
+        startAt: string,
+        value: number,
+        created_at: string
+    }[]>>
 }

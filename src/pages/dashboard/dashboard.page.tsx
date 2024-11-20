@@ -1,41 +1,37 @@
-
 import {Project} from "../../entities/project.ts";
 import {ProjectStatus} from "../../shared/enum/ProjectStatus.ts";
 import {ProjectProcessItem} from "../../features/project/proejct-process-item.ui.tsx";
 import {ProjectItem} from "../../features/project/project-item.ui.tsx";
 import {useNavigate} from "react-router-dom";
-
-export const dashboardData: Project[] = [
-    {
-        id: 1,
-        title: "프로젝트 A",
-        description: "진행중인 프로젝트",
-        status: ProjectStatus.ACTIVE,
-        startAt: "2024-11-15",
-        value: 75
-    },
-    {
-        id: 2,
-        title: "프로젝트 B",
-        description: "신규 프로젝트",
-        status: ProjectStatus.COMPLETED,
-        startAt: "2024-11-14",
-        value: 30
-    },
-    {
-        id: 3,
-        title: "프로젝트 C",
-        description: "완료된 프로젝트",
-        status: ProjectStatus.PENDING,
-        startAt: "2024-11-13",
-        value: 100
-    },
-];
+import {useEffect, useState} from "react";
+import {useFetchProjectQuery} from "../../features/project/fetch-project.mutation.ts";
 
 
 export const DashboardPage = () => {
 
     const navigate = useNavigate();
+
+    const [dashboardData, setDashboardData] = useState<Project[]>([]);
+    const {data, error, isLoading} = useFetchProjectQuery();
+
+    useEffect(() => {
+        if (data?.data != null) {
+            const transformedData = data.data.map(item => ({
+                id: Number(item.id),
+                title: item.title,
+                description: item.description,
+                status: item.status as ProjectStatus,
+                startAt: item.startAt,
+                value: item.value,
+                createAt: item.created_at,
+            }));
+            setDashboardData(transformedData ?? []);
+        }
+    }, [data]);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+
     return (
         <div className="p-6">
             <div className="flex flex-row justify-between items-center">
@@ -45,7 +41,8 @@ export const DashboardPage = () => {
                 </div>
                 <button type="button" onClick={() => {
                     navigate("/core/create-project")
-                }}>프로젝트 생성하기 </button>
+                }}>프로젝트 생성하기
+                </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

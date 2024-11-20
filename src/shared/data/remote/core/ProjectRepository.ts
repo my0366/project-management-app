@@ -3,7 +3,7 @@ import {ProjectStatus} from "../../../enum/ProjectStatus.ts";
 import {supabase} from "../../api.ts";
 import {PostgrestSingleResponse} from "@supabase/supabase-js";
 
-export class ProjectRepository implements IProjectRepository{
+export class ProjectRepository implements IProjectRepository {
     async createProject(request: RequestCreateProject): Promise<PostgrestSingleResponse<{ id: string }[]>> {
         return supabase.from('project')
             .insert([
@@ -17,4 +17,20 @@ export class ProjectRepository implements IProjectRepository{
             ])
             .select('id');
     }
+
+    async fetchProject(): Promise<PostgrestSingleResponse<{
+        id: string,
+        title: string,
+        description: string,
+        status: string,
+        startAt: string,
+        value: number,
+        created_at: string
+    }[]>> {
+        return supabase.from('project')
+            .select('*')
+
+    }
+
+
 }
