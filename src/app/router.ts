@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { createElement } from 'react';
-import { SignInPage } from '../pages/sign-in/sign-in.page.tsx';
-import { SignUpPage } from '../pages/sign-up/sign-up.page.tsx';
-import { DashboardPage } from '../pages/dashboard/dashboard.page.tsx';
+import { SignInPageUi } from '../pages/sign-in/sign-in-page.ui.tsx';
+import { SignUpPageUi } from '../pages/sign-up/sign-up-page.ui.tsx';
+import { DashboardPageUi } from '../pages/dashboard/dashboard-page.ui.tsx';
 import { Layout } from '../widgets/layout.tsx';
 import { CreateProject } from '../features/project/create-project/create-project.page.tsx';
 
@@ -16,17 +16,17 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'sign-in',
-            element: createElement(SignInPage),
+            element: createElement(SignInPageUi),
           },
           {
             path: 'sign-up',
-            element: createElement(SignUpPage),
+            element: createElement(SignUpPageUi),
           },
         ],
       },
       {
         path: 'dashboard',
-        element: createElement(DashboardPage),
+        element: createElement(DashboardPageUi),
       },
       {
         path: 'project',

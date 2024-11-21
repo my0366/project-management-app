@@ -1,21 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
+
 import { type SignInWithPasswordCredentials } from '@supabase/supabase-js';
 import showToast from '../../shared/util/ToastUtil.ts';
-import { useSignUpMutation } from '../../features/session/sign-up.mutation.ts';
+import { useSignInMutation } from '../../features/session/sign-in.mutation.ts';
 
-export const SignUpPage = () => {
+export const SignInPageUi = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<SignInWithPasswordCredentials>({
     phone: '',
     password: '',
   });
 
-  const signUpMutation = useSignUpMutation();
+  const signInMutation = useSignInMutation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    signUpMutation.mutate(formData, {
+    signInMutation.mutate(formData, {
       onSuccess: (data) => {
         if (data.error) {
           showToast.error(data.error.message);
@@ -33,7 +34,7 @@ export const SignUpPage = () => {
     <div className="flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-black">
-          회원가입{' '}
+          로그인
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -41,12 +42,12 @@ export const SignUpPage = () => {
               아이디
             </label>
             <input
-              type="text"
+              type="email"
               value={'email' in formData ? formData.email : ''}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              className="bg-gray-300 text-gray-700 p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="bg-gray-300 text-gray-700 p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 color"
             />
           </div>
           <div>
@@ -62,11 +63,19 @@ export const SignUpPage = () => {
               className="bg-gray-300 text-gray-700 p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
           </div>
+          <p
+            className="flex text-gray-500 justify-end underline"
+            onClick={() => {
+              navigate('/auth/sign-up');
+            }}
+          >
+            회원가입
+          </p>
           <button
             type="submit"
             className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
-            회원가입
+            로그인
           </button>
         </form>
       </div>

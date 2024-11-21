@@ -6,7 +6,7 @@ import {useFetchProjectQuery} from "../../features/project/fetch-project/fetch-p
 import {ProjectProcessItem} from "../../features/project/fetch-project/proejct-process-item.ui.tsx";
 import {ProjectItem} from "../../features/project/fetch-project/project-item.ui.tsx";
 
-export const DashboardPage = () => {
+export const DashboardPageUi = () => {
   const navigate = useNavigate();
 
   const [dashboardData, setDashboardData] = useState<Project[]>([]);
