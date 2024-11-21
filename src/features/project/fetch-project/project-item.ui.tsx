@@ -1,5 +1,5 @@
-import { Project } from '../../entities/project.ts';
-import { ProjectStatus } from '../../shared/enum/ProjectStatus.ts';
+import {ProjectStatus} from "../../../shared/enum/ProjectStatus.ts";
+import {Project} from "../../../entities/project.ts";
 
 interface ProjectItemProps {
   item: Project;

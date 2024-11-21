@@ -1,7 +1,7 @@
 import { IProjectRepository } from './IProjectRepository.ts';
 import { supabase } from '../../api.ts';
 import { PostgrestSingleResponse } from '@supabase/supabase-js';
-import { CreateProjectSchemaType } from '../../../../pages/create-project/create-proejct.contract.ts';
+import {CreateProjectSchemaType} from "../../../../features/project/create-project/create-proejct.contract.ts";
 
 export class ProjectRepository implements IProjectRepository {
   async createProject(

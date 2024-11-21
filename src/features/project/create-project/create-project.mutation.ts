@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { ProjectRepository } from '../../shared/data/remote/core/ProjectRepository.ts';
-import { CreateProjectSchemaType } from '../../pages/create-project/create-proejct.contract.ts';
+import {ProjectRepository} from "../../../shared/data/remote/core/ProjectRepository.ts";
+import {CreateProjectSchemaType} from "./create-proejct.contract.ts";
 
 export const useCreateProjectMutation = () => {
   return useMutation({

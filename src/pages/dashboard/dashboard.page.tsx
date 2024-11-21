@@ -1,10 +1,10 @@
 import { Project } from '../../entities/project.ts';
 import { ProjectStatus } from '../../shared/enum/ProjectStatus.ts';
-import { ProjectProcessItem } from '../../features/project/proejct-process-item.ui.tsx';
-import { ProjectItem } from '../../features/project/project-item.ui.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useFetchProjectQuery } from '../../features/project/fetch-project.mutation.ts';
+import {useFetchProjectQuery} from "../../features/project/fetch-project/fetch-project.mutation.ts";
+import {ProjectProcessItem} from "../../features/project/fetch-project/proejct-process-item.ui.tsx";
+import {ProjectItem} from "../../features/project/fetch-project/project-item.ui.tsx";
 
 export const DashboardPage = () => {
   const navigate = useNavigate();

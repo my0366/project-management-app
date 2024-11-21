@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import showToast from '../../shared/util/ToastUtil.ts';
-import { useCreateProjectMutation } from '../../features/project/create-project.mutation.ts';
 import {
   CreateProjectSchema,
   CreateProjectSchemaType,
 } from './create-proejct.contract.ts';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import {useCreateProjectMutation} from "./create-project.mutation.ts";
+import showToast from "../../../shared/util/ToastUtil.ts";
 
 export const CreateProject = () => {
   const navigate = useNavigate();

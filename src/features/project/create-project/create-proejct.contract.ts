@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ProjectStatus } from '../../shared/enum/ProjectStatus.ts';
+import { ProjectStatus } from '../../../shared/enum/ProjectStatus.ts';
 
 export type CreateProjectSchemaType = z.infer<typeof CreateProjectSchema>;
 
