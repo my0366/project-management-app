@@ -1,10 +1,10 @@
 import {useMutation} from "@tanstack/react-query";
-import {RequestCreateProject} from "../../shared/data/remote/core/IProjectRepository.ts";
 import {ProjectRepository} from "../../shared/data/remote/core/ProjectRepository.ts";
+import {CreateProjectSchemaType} from "../../pages/create-project/create-proejct.contract.ts";
 
 export const useCreateProjectMutation = () => {
     return useMutation({
-        mutationFn: async (request: RequestCreateProject) => {
+        mutationFn: async (request: CreateProjectSchemaType) => {
             const projectRepository = new ProjectRepository();
             return await projectRepository.createProject(request);
         },
