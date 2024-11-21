@@ -27,4 +27,16 @@ export abstract class IProjectRepository {
       }[]
     >
   >;
+
+  abstract fetchProjectById(id: string): Promise<
+    PostgrestSingleResponse<{
+      id: string;
+      title: string;
+      description: string;
+      status: string;
+      startAt: string;
+      value: number;
+      created_at: string;
+    }>
+  >;
 }

@@ -2,9 +2,9 @@ import { Project } from '../../entities/project.ts';
 import { ProjectStatus } from '../../shared/enum/ProjectStatus.ts';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {useFetchProjectQuery} from "../../features/project/fetch-project/fetch-project.mutation.ts";
-import {ProjectProcessItem} from "../../features/project/fetch-project/proejct-process-item.ui.tsx";
-import {ProjectItem} from "../../features/project/fetch-project/project-item.ui.tsx";
+import { useFetchProjectQuery } from '../../features/project/fetch-project/fetch-project.mutation.ts';
+import { ProjectProcessItem } from '../../features/project/fetch-project/proejct-process-item.ui.tsx';
+import { ProjectItem } from '../../features/project/fetch-project/project-item.ui.tsx';
 
 export const DashboardPageUi = () => {
   const navigate = useNavigate();
@@ -13,9 +13,9 @@ export const DashboardPageUi = () => {
   const { data, error, isLoading } = useFetchProjectQuery();
 
   useEffect(() => {
-    if (data?.data != null) {
+    if (data?.data != null && Array.isArray(data.data)) {
       const transformedData = data.data.map((item) => ({
-        id: Number(item.id),
+        id: item.id,
         title: item.title,
         description: item.description,
         status: item.status as ProjectStatus,
@@ -49,7 +49,12 @@ export const DashboardPageUi = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {dashboardData.map((item) => (
-          <ProjectItem item={item} />
+          <ProjectItem
+            item={item}
+            onClick={() => {
+              navigate(`/project/${item.id}`);
+            }}
+          />
         ))}
       </div>
 

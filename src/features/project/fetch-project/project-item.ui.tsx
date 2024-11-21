@@ -3,6 +3,7 @@ import {Project} from "../../../entities/project.ts";
 
 interface ProjectItemProps {
   item: Project;
+  onClick : () => void;
 }
 
 export const ProjectItem = (props: ProjectItemProps) => {
@@ -20,6 +21,7 @@ export const ProjectItem = (props: ProjectItemProps) => {
   return (
     <div
       key={props.item.id}
+      onClick={props.onClick}
       className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow"
     >
       <div className="flex justify-between props.items-center mb-2">
