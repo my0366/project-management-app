@@ -40,7 +40,7 @@ export const DashboardPageUi = () => {
         <button
           type="button"
           onClick={() => {
-            navigate('/core/create-project');
+            navigate('/project/create');
           }}
         >
           프로젝트 생성하기

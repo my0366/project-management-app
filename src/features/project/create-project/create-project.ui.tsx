@@ -29,7 +29,7 @@ export const CreateProject = () => {
           showToast.error(data.error.message);
         } else {
           window.alert('프로젝트가 성공적으로 생성되었습니다.');
-          navigate('/core/dashboard');
+          navigate('/dashboard');
         }
       },
       onError: (error) => {

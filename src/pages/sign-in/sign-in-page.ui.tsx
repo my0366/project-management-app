@@ -21,7 +21,7 @@ export const SignInPageUi = () => {
         if (data.error) {
           showToast.error(data.error.message);
         } else {
-          navigate('/core/dashboard');
+          navigate('/dashboard');
         }
       },
       onError: (error) => {

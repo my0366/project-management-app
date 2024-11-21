@@ -4,7 +4,7 @@ import { SignInPageUi } from '../pages/sign-in/sign-in-page.ui.tsx';
 import { SignUpPageUi } from '../pages/sign-up/sign-up-page.ui.tsx';
 import { DashboardPageUi } from '../pages/dashboard/dashboard-page.ui.tsx';
 import { Layout } from '../widgets/layout.tsx';
-import { CreateProject } from '../features/project/create-project/create-project.page.tsx';
+import { CreateProject } from '../features/project/create-project/create-project.ui.tsx';
 
 export const router = createBrowserRouter([
   {
