@@ -9,10 +9,12 @@ export const useFetchProjectQuery = () => {
   });
 };
 
+
 export const useFetchProjectDetailQuery = (id: string) => {
   const projectRepository = new ProjectRepository();
   return useQuery({
-    queryKey: ['fetchProject'],
+    queryKey: ['fetchProjectDetail'],
     queryFn: () => projectRepository.fetchProjectById(id),
   });
 };
+

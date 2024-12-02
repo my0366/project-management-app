@@ -1,33 +1,32 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useFetchProjectDetailQuery } from '../../features/project/fetch-project/fetch-project.mutation.ts';
-import { useEffect } from 'react';
+import { useFetchProjectDetailQuery } from '../../features/project/fetch-project/fetch-project.query.ts';
+import { useEffect, useState } from 'react';
 import { formatDate } from '../../shared/util/DateUtil.ts';
+import { CreateProjectGoalModal } from '../../features/project-goal/create-project-goal/create-project-goal.ui.tsx';
+import { useFetchProjectGoalQuery } from '../../features/project-goal/fetch-project-goal/fetch-project-goal.query.ts';
+import { ProjectGoal } from '../../entities/project_goal.ts';
 
 export const ProjectPage = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
+  // 프로젝트 상세 페이지 조회
   const { data, error, isLoading } = useFetchProjectDetailQuery(id ?? '');
+  // 프로젝트 목표 조회
+  const { data: goalData, refetch } = useFetchProjectGoalQuery();
+
+  const projectGoals: ProjectGoal[] = goalData?.data ?? [];
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (error) {
       navigate('/404');
     }
-  }, []);
-
-  const tasks = [
-    { id: 1, title: 'Task 1', completed: false },
-    { id: 2, title: 'Task 2', completed: true },
-    { id: 3, title: 'Task 3', completed: false },
-    { id: 4, title: 'Task 4', completed: false },
-    { id: 5, title: 'Task 5', completed: false },
-    { id: 6, title: 'Task 6', completed: false },
-    { id: 7, title: 'Task 7', completed: false },
-    { id: 7, title: 'Task 7', completed: false },
-    // Add more tasks as needed
-  ];
+  }, [error, navigate]);
 
   if (isLoading) return <div>Loading...</div>;
+
   return (
     <div className="flex flex-row rounded-lg bg-white h-[500px]">
       {/* 왼쪽 섹션 */}
@@ -65,31 +64,40 @@ export const ProjectPage = () => {
           <button
             type="button"
             className="bg-purple-200 px-4 py-2 rounded text-purple-800"
+            onClick={() => setModalOpen(true)}
           >
             할 일 추가
           </button>
         </div>
         <ul className="flex flex-col">
-          {tasks.map((task) => (
+          {projectGoals.map((task: ProjectGoal) => (
             <div key={task.id}>
               <div className="bg-neutral-300 rounded-md p-4 flex justify-between items-center mb-2">
                 <h3 className="text-lg font-semibold text-gray-600">
-                  {task.title}
+                  {task.description}
                 </h3>
                 <span
                   className={`px-2 py-1 rounded-full text-sm ${
-                    task.completed
+                    task.isDone
                       ? 'bg-green-100 text-green-800'
                       : 'bg-red-100 text-red-800'
                   }`}
                 >
-                  {task.completed ? '완료' : '미완료'}
+                  {task.isDone ? '완료' : '미완료'}
                 </span>
               </div>
             </div>
           ))}
         </ul>
       </div>
+      <CreateProjectGoalModal
+        isOpen={modalOpen}
+        project_id={id ?? ''}
+        onClose={() => {
+          setModalOpen(false);
+          refetch(); // Refetch project goals data
+        }}
+      />
     </div>
   );
 };

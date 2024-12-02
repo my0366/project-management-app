@@ -1,11 +1,11 @@
 import { ProjectStatus } from '../shared/enum/ProjectStatus.ts';
 
 export interface Project {
+  description: string;
   id: string;
   title: string;
-  description: string;
-  status: ProjectStatus;
-  startAt: string;
   value: number;
-  createAt: string;
+  startAt: string;
+  created_at: string;
+  status: ProjectStatus
 }

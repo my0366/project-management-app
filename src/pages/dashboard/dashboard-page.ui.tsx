@@ -2,7 +2,7 @@ import { Project } from '../../entities/project.ts';
 import { ProjectStatus } from '../../shared/enum/ProjectStatus.ts';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useFetchProjectQuery } from '../../features/project/fetch-project/fetch-project.mutation.ts';
+import { useFetchProjectQuery } from '../../features/project/fetch-project/fetch-project.query.ts';
 import { ProjectProcessItem } from '../../features/project/fetch-project/proejct-process-item.ui.tsx';
 import { ProjectItem } from '../../features/project/fetch-project/project-item.ui.tsx';
 
@@ -13,16 +13,8 @@ export const DashboardPageUi = () => {
   const { data, error, isLoading } = useFetchProjectQuery();
 
   useEffect(() => {
-    if (data?.data != null && Array.isArray(data.data)) {
-      const transformedData = data.data.map((item) => ({
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        status: item.status as ProjectStatus,
-        startAt: item.startAt,
-        value: item.value,
-        createAt: item.created_at,
-      }));
+    if (data?.data != null) {
+      const transformedData: Project[] = data.data;
       setDashboardData(transformedData ?? []);
     }
   }, [data]);
